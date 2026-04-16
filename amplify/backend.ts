@@ -37,7 +37,6 @@ import { petrophysicsAgentBuilder } from './agents/petrophysicsAgent/petrophysic
 
 const resourceTags = {
   Project: 'agents-for-energy',
-  Environment: 'dev',
   AgentsForEnergy: 'true'
 }
 

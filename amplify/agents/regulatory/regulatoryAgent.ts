@@ -139,7 +139,6 @@ export function regulatoryAgentBuilder(scope: Construct, props: BedrockAgentBuil
         metricName: 'Invocations',
         dimensionsMap: {
             AgentId: regulatoryAgent.attrAgentId,
-            Environment: environment
         }
     });
 
