@@ -4,10 +4,7 @@ backend:
     preBuild:
       commands:
         - echo "Build environment is $CODEBUILD_BUILD_IMAGE"
-        - echo "Current Node version $(node -v)"
-        - nvm install 20
-        - nvm use 20
-        - echo "Switched to Node version $(node -v)"
+        - echo "Node version $(node -v)"
         # - aws ecr-public get-login-password | docker login --username AWS --password-stdin public.ecr.aws
     build:
       commands:
@@ -18,7 +15,7 @@ frontend:
   phases:
     preBuild:
       commands:
-        - nvm use 20
+        - echo "Node version $(node -v)"
     build:
       commands:
         - npm run build
