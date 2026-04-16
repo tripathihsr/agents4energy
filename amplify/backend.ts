@@ -23,15 +23,14 @@ import {
   aws_ec2 as ec2,
   aws_lambda as lambda,
   custom_resources as cr,
-  Aspects
 } from 'aws-cdk-lib'
 
-import { AwsSolutionsChecks } from 'cdk-nag'
+// cdk-nag imports removed — not in package.json dependencies and not invoked in code
 
 import { productionAgentBuilder } from "./agents/production/productionAgent"
 import { maintenanceAgentBuilder } from "./agents/maintenance/maintenanceAgent"
 import { AppConfigurator } from './custom/appConfigurator'
-import { cdkNagSupperssionsHandler } from './custom/cdkNagHandler';
+// cdkNagHandler import removed — cdk-nag not in package.json dependencies
 
 import { addLlmAgentPolicies } from './functions/utils/cdkUtils'
 import { petrophysicsAgentBuilder } from './agents/petrophysicsAgent/petrophysicsAgent';
