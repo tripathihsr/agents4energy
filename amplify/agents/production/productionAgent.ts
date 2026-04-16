@@ -368,7 +368,7 @@ export function productionAgentBuilder(scope: Construct, props: ProductionAgentP
         },
         policy: cr.AwsCustomResourcePolicy.fromStatements([
             new iam.PolicyStatement({
-                actions: ['bedrock:startIngestionJob', 'bedrock:stopIngestionJob'],
+                actions: ['bedrock:StartIngestionJob', 'bedrock:StopIngestionJob'],
                 resources: [petroleumEngineeringKnowledgeBase.knowledgeBaseArn]
             })
         ])
@@ -479,7 +479,7 @@ export function productionAgentBuilder(scope: Construct, props: ProductionAgentP
 
     configureProdDbFunction.addToRolePolicy(
         new iam.PolicyStatement({
-            actions: ['bedrock:startIngestionJob'],
+            actions: ['bedrock:StartIngestionJob'],
             resources: [sqlTableDefBedrockKnowledgeBase.knowledgeBase.attrKnowledgeBaseArn],
         })
     )
@@ -526,12 +526,12 @@ export function productionAgentBuilder(scope: Construct, props: ProductionAgentP
         // onUpdate: startIngestionJobResourceCall,
         policy: cr.AwsCustomResourcePolicy.fromStatements([
             new iam.PolicyStatement({
-                actions: ['bedrock:startIngestionJob'],
+                actions: ['bedrock:StartIngestionJob'],
                 resources: [sqlTableDefBedrockKnowledgeBase.knowledgeBase.attrKnowledgeBaseArn],
             }),
         ]),
     });
-    // prodTableKbIngestionJobTrigger.node.addDependency(productionAgentTableDefDataSource)
+    prodTableKbIngestionJobTrigger.node.addDependency(productionAgentTableDefDataSource)
     prodTableKbIngestionJobTrigger.node.addDependency(prodDbConfigurator)
 
     //This function will get table definitions from any athena data source with the AgentsForEnergy tag, upload them to s3, and start a knoledge base ingestion job to present them to an agent 
