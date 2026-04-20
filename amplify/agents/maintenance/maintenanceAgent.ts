@@ -30,8 +30,8 @@ export function maintenanceAgentBuilder(scope: Construct, props: AgentProps) {
     const defaultDatabaseName = 'maintdb';
     const foundationModel = 'anthropic.claude-sonnet-4-6';
     // const foundationModel = 'anthropic.claude-3-5-sonnet-20241022-v2:0';
-    const agentName = `A4E-Maintenance-${stackUUID}`;
-    const agentRoleName = `AmazonBedrockExecutionRole_A4E_Maintenance-${stackUUID}`;
+    const agentName = `A4E-Maintenance`;
+    const agentRoleName = `AmazonBedrockExecutionRole_A4E_Maintenance`;
     const agentDescription = 'Agent for energy industry maintenance workflows';
     const knowledgeBaseName = `A4E-KB-Maintenance-${stackUUID}`;
     const postgresPort = 5432;
@@ -49,7 +49,6 @@ export function maintenanceAgentBuilder(scope: Construct, props: AgentProps) {
     }
 
     const bedrockAgentRole = new iam.Role(scope, 'BedrockAgentRole', {
-        roleName: agentRoleName,
         assumedBy: new iam.ServicePrincipal('bedrock.amazonaws.com'),
         description: 'IAM role for Maintenance Agent to access KBs and query CMMS',
     });
@@ -77,9 +76,7 @@ export function maintenanceAgentBuilder(scope: Construct, props: AgentProps) {
         
     });
     maintDb.secret?.addRotationSchedule('RotationSchedule', {
-        hostedRotation: secretsmanager.HostedRotation.postgreSqlSingleUser({
-            functionName: `SecretRotationMaintDb-${stackUUID}`
-          }),
+        hostedRotation: secretsmanager.HostedRotation.postgreSqlSingleUser(),
         automaticallyAfter: cdk.Duration.days(30)
     });
     const writerNode = maintDb.node.findChild('writer').node.defaultChild as rds.CfnDBInstance // Set this as a dependency to cause a resource to wait until the database is queriable
