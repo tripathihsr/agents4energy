@@ -369,7 +369,7 @@ export function productionAgentBuilder(scope: Construct, props: ProductionAgentP
         policy: cr.AwsCustomResourcePolicy.fromStatements([
             new iam.PolicyStatement({
                 actions: ['bedrock:StartIngestionJob', 'bedrock:StopIngestionJob'],
-                resources: [petroleumEngineeringKnowledgeBase.knowledgeBaseArn]
+                resources: ['*']
             })
         ])
     })
@@ -527,7 +527,7 @@ export function productionAgentBuilder(scope: Construct, props: ProductionAgentP
         policy: cr.AwsCustomResourcePolicy.fromStatements([
             new iam.PolicyStatement({
                 actions: ['bedrock:StartIngestionJob'],
-                resources: [sqlTableDefBedrockKnowledgeBase.knowledgeBase.attrKnowledgeBaseArn],
+                resources: ['*'],
             }),
         ]),
     });
