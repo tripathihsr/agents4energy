@@ -51,6 +51,12 @@ const backend = defineBackend({
   preSignUp
 });
 
+// Disable self-registration on Cognito User Pool for security
+const cfnUserPool = backend.auth.resources.cfnResources.cfnUserPool;
+cfnUserPool.adminCreateUserConfig = {
+  allowAdminCreateUserOnly: true,
+};
+
 const bedrockRuntimeDataSource = backend.data.resources.graphqlApi.addHttpDataSource(
   "bedrockRuntimeDS",
   `https://bedrock-runtime.${backend.auth.stack.region}.amazonaws.com`,
