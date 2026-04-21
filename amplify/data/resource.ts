@@ -12,7 +12,7 @@ export const getStructuredOutputFromLangchainFunction = defineFunction({
   entry: '../functions/getStructuredOutputFromLangchain.ts',
   timeoutSeconds: 120,
   environment: {
-    MODEL_ID: 'anthropic.claude-haiku-4-5-v1:0'
+    MODEL_ID: 'apac.anthropic.claude-3-haiku-20240307-v1:0'
   },
 });
 
@@ -21,8 +21,8 @@ export const productionAgentFunction = defineFunction({
   entry: '../functions/productionAgentFunction/index.ts',
   timeoutSeconds: 900,
   environment: {
-    STRUCTURED_OUTPUT_MODEL_ID: 'anthropic.claude-haiku-4-5-v1:0',
-    MODEL_ID: 'anthropic.claude-sonnet-4-6',
+    STRUCTURED_OUTPUT_MODEL_ID: 'apac.anthropic.claude-3-haiku-20240307-v1:0',
+    MODEL_ID: 'apac.anthropic.claude-sonnet-4-20250514-v1:0',
     FILE_PROCESSING_CONCURRENCY: '10'
   },
   runtime: 20
@@ -33,7 +33,7 @@ export const planAndExecuteAgentFunction = defineFunction({
   entry: '../functions/planAndExecuteAgent/index.ts',
   timeoutSeconds: 900,
   environment: {
-    MODEL_ID: 'anthropic.claude-sonnet-4-6'
+    MODEL_ID: 'apac.anthropic.claude-sonnet-4-20250514-v1:0'
   },
   runtime: 20
 });
