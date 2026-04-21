@@ -125,8 +125,7 @@ backend.getStructuredOutputFromLangchainFunction.resources.lambda.addToRolePolic
   new iam.PolicyStatement({
     resources: [
       `arn:aws:bedrock:${backend.auth.stack.region}:${backend.auth.stack.account}:inference-profile/*`,
-      `arn:aws:bedrock:${backend.auth.stack.region}::foundation-model/*`,
-      `arn:aws:bedrock:us-*::foundation-model/*`,
+      `arn:aws:bedrock:*::foundation-model/*`,
     ],
     actions: ["bedrock:InvokeModel"],
   })
